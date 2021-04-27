@@ -18,9 +18,10 @@ function TodoTemplate() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  width: 500px;
+  height: 650px;
   border: 3px solid #000;
+  background-color: #fff;
 `;
 
 export default TodoTemplate;

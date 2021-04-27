@@ -7,10 +7,6 @@ function TodoItemList() {
   return (
     <Container>
       <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
     </Container>
   );
 }
@@ -18,8 +14,10 @@ function TodoItemList() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  padding: 10px;
+  margin: 20px 10px;
+  height: 460px;
+  overflow: scroll;
 `;
 
 export default TodoItemList;
