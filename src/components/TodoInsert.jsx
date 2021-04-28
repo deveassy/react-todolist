@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-function TodoInsert() {
+function TodoInsert(props) {
+  const [content, setContent] = useState("");
+
+  const handleChange = (e) => {
+    setContent(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!content) return;
+    // 만약 input 창이 빈채로 submit을 하려고 할 땐 return시키기
+    props.onSubmit(content);
+    setContent("");
+    // submit을 한 후에는 input 창을 비우기
+  };
   return (
     <Container>
-      <TextInput placeholder="here" />
-      <AddButton>ADD</AddButton>
+      <form onSubmit={handleSubmit}>
+        <TextInput
+          type="text"
+          name="text"
+          placeholder="here"
+          value={content}
+          onChange={handleChange}
+        />
+        <AddButton
+          type="submit"
+          onClick={handleSubmit}
+          onKeyPress={handleKeyPress}
+        >
+          ADD
+        </AddButton>
+      </form>
     </Container>
   );
 }

@@ -3,10 +3,22 @@ import styled from "styled-components";
 
 import TodoItem from "./TodoItem";
 
-function TodoItemList() {
+function TodoItemList({ todos, onRemove, onToggle }) {
   return (
     <Container>
-      <TodoItem />
+      {/* {props.todos.map((todo) => {
+        return (
+          <TodoItem {...todo} key={todo.id} id={todo.id} todos={props.todos} />
+        );
+      })} */}
+      {todos.map((todo) => (
+        <TodoItem
+          todo={todo}
+          key={todo.id}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        />
+      ))}
     </Container>
   );
 }

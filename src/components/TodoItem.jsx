@@ -1,15 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
-function TodoItem() {
+function TodoItem({ todo, onRemove, onToggle }) {
+  const { id, text, checked } = todo;
+
   return (
     <Container>
-      <DoneButton>
-        <img src="./img/check.png" style={{ width: 15, height: 15 }} />
+      <DoneButton onClick={() => onToggle(id)}>
+        {checked ? <CheckBox src="./img/check.png" /> : null}
       </DoneButton>
-      <Topic>할일목록</Topic>
-      <DeleteButton>
-        <img src="./img/trash.png" style={{ width: 25, height: 25 }} />
+      <Topic
+        style={{
+          textDecoration: checked ? "line-through" : null,
+          color: checked ? "#ccc" : "#000",
+        }}
+      >
+        {text}
+      </Topic>
+      <DeleteButton onClick={() => onRemove(id)}>
+        <DeleteImg src="./img/trash.png" />
       </DeleteButton>
     </Container>
   );
@@ -36,6 +45,11 @@ const DoneButton = styled.button`
   cursor: pointer;
 `;
 
+const CheckBox = styled.img`
+  width: 15px;
+  height: 15px;
+`;
+
 const Topic = styled.p`
   display: flex;
   flex-direction: row;
@@ -52,6 +66,11 @@ const DeleteButton = styled.button`
   border: 0;
   background-color: transparent;
   cursor: pointer;
+`;
+
+const DeleteImg = styled.img`
+  width: 25px;
+  height: 25px;
 `;
 
 export default TodoItem;
