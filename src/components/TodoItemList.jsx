@@ -6,11 +6,6 @@ import TodoItem from "./TodoItem";
 function TodoItemList({ todos, onRemove, onToggle }) {
   return (
     <Container>
-      {/* {props.todos.map((todo) => {
-        return (
-          <TodoItem {...todo} key={todo.id} id={todo.id} todos={props.todos} />
-        );
-      })} */}
       {todos.map((todo) => (
         <TodoItem
           todo={todo}

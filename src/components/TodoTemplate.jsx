@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 import TodoTitle from "./TodoTitle";
@@ -8,39 +8,34 @@ import TodoItemList from "./TodoItemList";
 function TodoTemplate() {
   const [todos, setTodos] = useState([]);
 
-  const nextId = useRef(4);
+  const nextId = useRef(0);
 
-  const handleSubmit = useCallback(
-    (text) => {
-      // setTodos([...todos, text]);
-      const todo = {
-        id: nextId.current,
-        text,
-        checked: false,
-      };
-      setTodos(todos.concat(todo));
-      nextId.current += 1;
-    },
-    [todos]
-  );
+  const handleSubmit = (text) => {
+    // setTodos([...todos, text]);
+    const todo = {
+      id: nextId.current,
+      text,
+      checked: false,
+    };
+    setTodos(todos.concat(todo));
+    nextId.current += 1;
+  };
 
-  const onRemove = useCallback(
-    (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
-    },
-    [todos]
-  );
+  const onRemove = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
-  const onToggle = useCallback(
-    (id) => {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, checked: !todo.checked } : todo
-        )
-      );
-    },
-    [todos]
-  );
+  const onToggle = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        // if (todo.id === id) {
+        //   todo.checked = !todo.checked;
+        // }
+        // return todo;
+        return todo.id === id ? { ...todo, checked: !todo.checked } : todo;
+      })
+    );
+  };
 
   return (
     <Container>
@@ -57,6 +52,7 @@ const Container = styled.div`
   width: 500px;
   height: 650px;
   border: 3px solid #000;
+  border-radius: 20px;
   background-color: #fff;
 `;
 

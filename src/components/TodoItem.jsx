@@ -43,6 +43,9 @@ const DoneButton = styled.button`
   background-color: transparent;
   font-size: 7px;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const CheckBox = styled.img`
@@ -66,6 +69,9 @@ const DeleteButton = styled.button`
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const DeleteImg = styled.img`
